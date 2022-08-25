@@ -13,7 +13,10 @@ connectDB();
 const app = express();
 
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3001");
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://chatify-mern-app.web.app/"
+  );
   res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
   res.header(
     "Access-Control-Allow-Headers",
