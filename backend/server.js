@@ -54,7 +54,7 @@ const server = app.listen(PORT, console.log(`Server Started ${PORT}`));
 
 const io = require("socket.io")(server, {
   pingTimeOut: 60000,
-  cors: { origin: "http://localhost:3000" },
+  cors: { origin: "https://chatify-mern-app.web.app/" },
 });
 
 io.on("connection", (socket) => {

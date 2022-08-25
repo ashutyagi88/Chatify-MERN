@@ -35,7 +35,7 @@ function SignIn() {
 
       console.log(email);
       const { data } = await axios.post(
-        "/api/user/login",
+        "https://mern-chatify-chat-app.herokuapp.com/api/user/login",
         {
           email,
           password,

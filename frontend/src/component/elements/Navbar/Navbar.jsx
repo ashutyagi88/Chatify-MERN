@@ -87,7 +87,10 @@ function Navbar() {
       setLoading(true);
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
 
-      const { data } = await axios.get(`/api/user?search=${search}`, config);
+      const { data } = await axios.get(
+        `https://mern-chatify-chat-app.herokuapp.com/api/user?search=${search}`,
+        config
+      );
 
       setLoading(false);
       setSearchResult(data);

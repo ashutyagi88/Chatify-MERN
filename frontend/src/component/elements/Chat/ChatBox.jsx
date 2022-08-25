@@ -66,7 +66,7 @@ function ChatBox({ fetchAgain, setFetchAgain }) {
         setNewMessage("");
 
         const { data } = await axios.post(
-          "/api/message/",
+          "https://mern-chatify-chat-app.herokuapp.com/api/message/",
           {
             content: newMessage,
             chatId: selectedChat._id,
@@ -113,7 +113,7 @@ function ChatBox({ fetchAgain, setFetchAgain }) {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
 
         const { data } = await axios.get(
-          `/api/message/${selectedChat._id}`,
+          `https://mern-chatify-chat-app.herokuapp.com/api/message/${selectedChat._id}`,
           config
         );
 
