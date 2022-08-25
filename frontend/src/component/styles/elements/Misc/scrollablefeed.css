@@ -1,0 +1,11 @@
+.styles_scrollable-div__prSCv {
+  height: calc(100% - 20px) !important;
+  padding: 10px 0 !important;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.styles_scrollable-div__prSCv::-webkit-scrollbar {
+  display: none;
+}
