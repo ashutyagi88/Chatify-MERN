@@ -24,7 +24,7 @@ import {
   MessageInput,
 } from "../../styles/elements/Chat/ChatBoxStyles";
 
-const ENDPOINT = "https://chatify-mern-app.herokuapp.com";
+const ENDPOINT = "http://localhost:3000/";
 var socket, selectedChatCompare;
 
 function ChatBox({ fetchAgain, setFetchAgain }) {
@@ -66,7 +66,7 @@ function ChatBox({ fetchAgain, setFetchAgain }) {
         setNewMessage("");
 
         const { data } = await axios.post(
-          "https://mern-chatify-chat-app.herokuapp.com/api/message/",
+          "http://localhost:3000/api/message/",
           {
             content: newMessage,
             chatId: selectedChat._id,
@@ -113,7 +113,7 @@ function ChatBox({ fetchAgain, setFetchAgain }) {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
 
         const { data } = await axios.get(
-          `https://mern-chatify-chat-app.herokuapp.com/api/message/${selectedChat._id}`,
+          `http://localhost:3000/api/message/${selectedChat._id}`,
           config
         );
 
@@ -126,7 +126,7 @@ function ChatBox({ fetchAgain, setFetchAgain }) {
   };
 
   useEffect(() => {
-    socket = io(ENDPOINT);
+    socket = io(ENDPOINT, { transports: ["websocket"] });
     socket.emit("setup", user);
     socket.on("connected", () => setSocketConnected(true));
     socket.on("typing", () => setIsTyping(true));

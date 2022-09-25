@@ -24,7 +24,7 @@ function SignUp() {
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    if (!email && !name && !password && !confirmpassword) {
+    if (!email || !name || !password || !confirmpassword) {
       alert("Enter All the Field");
     } else if (password.length < 6) {
       alert("Password must contain Six chracters");
@@ -39,7 +39,7 @@ function SignUp() {
         };
 
         const { data } = await axios.post(
-          "https://mern-chatify-chat-app.herokuapp.com/api/user",
+          "http://localhost:3000/api/user",
           {
             name,
             email,
@@ -48,7 +48,6 @@ function SignUp() {
           },
           config
         );
-        console.log(name);
 
         alert("Registration Successfull");
 

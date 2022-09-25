@@ -43,7 +43,7 @@ function GroupChatModal({ children }) {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
 
         const { data } = await axios.get(
-          `https://mern-chatify-chat-app.herokuapp.com/api/user?search=${search}`,
+          `http://localhost:3000/api/user?search=${search}`,
           config
         );
         setSearchResults(data);
@@ -63,7 +63,7 @@ function GroupChatModal({ children }) {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
 
       const { data } = await axios.post(
-        "/api/chats/group",
+        "http://localhost:3000/api/chats/group",
         {
           name: groupChatName,
           users: JSON.stringify(selectedUsers.map((user) => user._id)),
@@ -84,9 +84,9 @@ function GroupChatModal({ children }) {
   const handleGroup = (userToAdd) => {
     if (selectedUsers.includes(userToAdd)) {
       alert("User Already Added");
+    } else {
+      setSelectedUsers([...selectedUsers, userToAdd]);
     }
-
-    setSelectedUsers([...selectedUsers, userToAdd]);
   };
 
   return (
@@ -109,10 +109,12 @@ function GroupChatModal({ children }) {
             <ModalInput
               placeholder="Group Name"
               onChange={(e) => setGroupChatName(e.target.value)}
+              value={groupChatName}
             ></ModalInput>
             <ModalInput
               placeholder="Add User"
               onChange={(e) => setSearch(e.target.value)}
+              value={search}
             ></ModalInput>
             <UserSearch onClick={handleSearch}>Search</UserSearch>
           </ModalContent>

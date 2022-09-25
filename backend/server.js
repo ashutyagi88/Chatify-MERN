@@ -53,12 +53,15 @@ const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, console.log(`Server Started ${PORT}`));
 
 const io = require("socket.io")(server, {
-  pingTimeOut: 60000,
-  cors: { origin: "https://chatify-mern-app.web.app/" },
+  pingTimeout: 60000,
+  cors: {
+    origin: "http://localhost:3001/",
+    methods: ["GET", "POST"],
+  },
 });
 
 io.on("connection", (socket) => {
-  console.log("connected to socket.io");
+  console.log("Connection On with Socket");
 
   socket.on("setup", (userData) => {
     socket.join(userData._id);
@@ -67,22 +70,6 @@ io.on("connection", (socket) => {
 
   socket.on("join chat", (room) => {
     socket.join(room);
-    console.log("User Joined : ", room);
-    socket.emit("connected");
-  });
-
-  socket.on("new message", (newMessageRecieved) => {
-    var chat = newMessageRecieved.chat;
-
-    if (!chat.users) return console.log("chat user not defined");
-
-    chat.users.forEach((user) => {
-      if (user._id === newMessageRecieved.sender._id) {
-        return;
-      } else {
-        socket.in(user._id).emit("message recieved", newMessageRecieved);
-      }
-    });
   });
 
   socket.on("typing", (room) => {
@@ -93,8 +80,15 @@ io.on("connection", (socket) => {
     socket.in(room).emit("stop typing");
   });
 
-  socket.off("setup", () => {
-    console.log("User Disconnected");
-    socket.leave(userData._id);
+  socket.on("new message", (newMessageRecieved) => {
+    var chat = newMessageRecieved.chat;
+
+    if (!chat.users) return;
+
+    chat.users.forEach((user) => {
+      if (user._id === newMessageRecieved.sender._id) return;
+
+      socket.in(user._id).emit("message recieved", newMessageRecieved);
+    });
   });
 });

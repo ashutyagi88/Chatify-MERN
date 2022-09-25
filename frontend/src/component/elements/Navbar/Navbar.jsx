@@ -88,7 +88,7 @@ function Navbar() {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
 
       const { data } = await axios.get(
-        `https://mern-chatify-chat-app.herokuapp.com/api/user?search=${search}`,
+        `http://localhost:3000/api/user?search=${search}`,
         config
       );
 
@@ -104,12 +104,18 @@ function Navbar() {
     try {
       const config = {
         headers: {
-          Authorization: `Bearer ${user.token}`,
           "Content-type": "application/json",
+          Authorization: `Bearer ${user.token}`,
         },
       };
 
-      const { data } = await axios.post("/api/chats", { userId }, config);
+      const { data } = await axios.post(
+        "http://localhost:3000/api/chats",
+        { userId },
+        config
+      );
+
+      console.log(data);
 
       if (!chats.find((c) => c._id === data._id)) {
         setChats([data, ...chats]);

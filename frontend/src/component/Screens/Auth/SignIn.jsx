@@ -26,6 +26,10 @@ function SignIn() {
   const handleSignIn = async (e) => {
     e.preventDefault();
 
+    if (!email || !password) {
+      alert("Please Fill All the Fields");
+    }
+
     try {
       const config = {
         headers: {
@@ -33,9 +37,8 @@ function SignIn() {
         },
       };
 
-      console.log(email);
       const { data } = await axios.post(
-        "https://mern-chatify-chat-app.herokuapp.com/api/user/login",
+        "http://localhost:3000/api/user/login",
         {
           email,
           password,

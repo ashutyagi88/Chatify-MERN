@@ -48,7 +48,7 @@ function UpdateGrpChatModal({ fetchAgain, setFetchAgain, fetchMessages }) {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
 
       const { data } = await axios.put(
-        `https://mern-chatify-chat-app.herokuapp.com/api/chats/rename`,
+        `http://localhost:3000/api/chats/rename`,
         { chatId: selectedChat._id, chatName: groupChatName },
         config
       );
@@ -71,7 +71,7 @@ function UpdateGrpChatModal({ fetchAgain, setFetchAgain, fetchMessages }) {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
 
         const { data } = await axios.get(
-          `https://mern-chatify-chat-app.herokuapp.com/api/user?search=${search}`,
+          `http://localhost:3000/api/user?search=${search}`,
           config
         );
         setSearchResults(data);
@@ -95,7 +95,7 @@ function UpdateGrpChatModal({ fetchAgain, setFetchAgain, fetchMessages }) {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
 
       const { data } = await axios.put(
-        `https://mern-chatify-chat-app.herokuapp.com/api/chats/groupadd`,
+        `http://localhost:3000/api/chats/groupadd`,
         { chatId: selectedChat._id, userId: userToAdd._id },
         config
       );
@@ -119,7 +119,7 @@ function UpdateGrpChatModal({ fetchAgain, setFetchAgain, fetchMessages }) {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
 
       const { data } = await axios.put(
-        `https://mern-chatify-chat-app.herokuapp.com/api/chats/groupremove`,
+        `http://localhost:3000/api/chats/groupremove`,
         { chatId: selectedChat._id, userId: userToRemove._id },
         config
       );
