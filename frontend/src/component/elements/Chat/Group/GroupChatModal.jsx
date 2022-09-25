@@ -43,7 +43,7 @@ function GroupChatModal({ children }) {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
 
         const { data } = await axios.get(
-          `http://localhost:3000/api/user?search=${search}`,
+          ` https://chatify-app-mern.herokuapp.com/api/user?search=${search}`,
           config
         );
         setSearchResults(data);
@@ -63,7 +63,7 @@ function GroupChatModal({ children }) {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
 
       const { data } = await axios.post(
-        "http://localhost:3000/api/chats/group",
+        " https://chatify-app-mern.herokuapp.com/api/chats/group",
         {
           name: groupChatName,
           users: JSON.stringify(selectedUsers.map((user) => user._id)),

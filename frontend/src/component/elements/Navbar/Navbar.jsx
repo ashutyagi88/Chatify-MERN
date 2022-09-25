@@ -88,7 +88,7 @@ function Navbar() {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
 
       const { data } = await axios.get(
-        `http://localhost:3000/api/user?search=${search}`,
+        ` https://chatify-app-mern.herokuapp.com/api/user?search=${search}`,
         config
       );
 
@@ -110,7 +110,7 @@ function Navbar() {
       };
 
       const { data } = await axios.post(
-        "http://localhost:3000/api/chats",
+        " https://chatify-app-mern.herokuapp.com/api/chats",
         { userId },
         config
       );

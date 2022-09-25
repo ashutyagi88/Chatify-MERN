@@ -39,7 +39,7 @@ function SignUp() {
         };
 
         const { data } = await axios.post(
-          "http://localhost:3000/api/user",
+          " https://chatify-app-mern.herokuapp.com/api/user",
           {
             name,
             email,

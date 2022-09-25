@@ -22,7 +22,7 @@ function MyChats({ fetchAgain }) {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
       const { data } = await axios.get(
-        "http://localhost:3000/api/chats",
+        " https://chatify-app-mern.herokuapp.com/api/chats",
         config
       );
       setChats(data);
