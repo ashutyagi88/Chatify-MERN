@@ -13,7 +13,7 @@ connectDB();
 const app = express();
 
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Origin", "https://chatify-mern-app.web.app");
   res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
   res.header(
     "Access-Control-Allow-Headers",
@@ -34,18 +34,6 @@ app.use("/api/chats", chatRoutes);
 
 app.use("/api/message", messageRoutes);
 
-// const __dirname1 = path.resolve();
-
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static("frontend/build"));
-
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.resolve("frontend", "build", "index.html"));
-//   });
-// } else {
-
-// }
-
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
@@ -55,7 +43,7 @@ const server = app.listen(PORT, console.log(`Server Started ${PORT}`));
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "https://chatify-mern-app.web.app/",
+    origin: "https://chatify-mern-app.web.app",
     methods: ["GET", "POST"],
   },
 });

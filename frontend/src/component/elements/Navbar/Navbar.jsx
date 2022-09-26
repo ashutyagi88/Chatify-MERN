@@ -87,10 +87,7 @@ function Navbar() {
       setLoading(true);
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
 
-      const { data } = await axios.get(
-        ` https://chatify-app-mern.herokuapp.com/api/user?search=${search}`,
-        config
-      );
+      const { data } = await axios.get(`/api/user?search=${search}`, config);
 
       setLoading(false);
       setSearchResult(data);
@@ -109,11 +106,7 @@ function Navbar() {
         },
       };
 
-      const { data } = await axios.post(
-        " https://chatify-app-mern.herokuapp.com/api/chats",
-        { userId },
-        config
-      );
+      const { data } = await axios.post("/api/chats", { userId }, config);
 
       console.log(data);
 

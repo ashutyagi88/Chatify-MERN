@@ -24,7 +24,7 @@ import {
   MessageInput,
 } from "../../styles/elements/Chat/ChatBoxStyles";
 
-const ENDPOINT = " https://chatify-app-mern.herokuapp.com/";
+const ENDPOINT = "https://chatify-backend-mern.herokuapp.com";
 var socket, selectedChatCompare;
 
 function ChatBox({ fetchAgain, setFetchAgain }) {
@@ -66,7 +66,7 @@ function ChatBox({ fetchAgain, setFetchAgain }) {
         setNewMessage("");
 
         const { data } = await axios.post(
-          " https://chatify-app-mern.herokuapp.com/api/message/",
+          "/api/message/",
           {
             content: newMessage,
             chatId: selectedChat._id,
@@ -113,7 +113,7 @@ function ChatBox({ fetchAgain, setFetchAgain }) {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
 
         const { data } = await axios.get(
-          ` https://chatify-app-mern.herokuapp.com/api/message/${selectedChat._id}`,
+          `/api/message/${selectedChat._id}`,
           config
         );
 

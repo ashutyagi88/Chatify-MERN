@@ -21,10 +21,7 @@ function MyChats({ fetchAgain }) {
   const fetchChats = async () => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      const { data } = await axios.get(
-        " https://chatify-app-mern.herokuapp.com/api/chats",
-        config
-      );
+      const { data } = await axios.get("/api/chats", config);
       setChats(data);
     } catch (error) {
       alert("Failed to Load Chat");
